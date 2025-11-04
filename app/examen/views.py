@@ -35,6 +35,19 @@ def dame_videojuego_plataforma(request, nombreFabricante, nombrePlataforma, nume
 
     return render(request,'Lista_Videojuego.html',{'Videojuego_Mostrar':videojuego})
 
+# URL 3
+
+def dame_videojuego_videojuegoPlataforma_null(request): 
+    
+    videojuego = (
+        Videojuego.objects
+        .select_related("plataforma")
+        .filter(plataforma = None)
+        .all()
+    )
+
+    return render(request,'Lista_Videojuego.html',{'Videojuego_Mostrar':videojuego})
+
 # Errores
 def mi_error_404(request,exception=None):
     return render(request,'error/404.html',None,None,404)

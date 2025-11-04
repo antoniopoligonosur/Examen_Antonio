@@ -13,7 +13,7 @@ class Estudio(models.Model):
     nombre_estudio= models.CharField(max_length=30)
     
     #1:N con sede
-    sede = models.OneToOneField(Sede, on_delete=models.CASCADE, related_name='estudioSede')
+    sede = models.ForeignKey(Sede, on_delete=models.CASCADE, related_name='estudioSede')
     
 #------------------------------- PLATAFORMA ------------------------------------------ 
 class Plataforma(models.Model):
@@ -22,7 +22,7 @@ class Plataforma(models.Model):
         ('S', 'Sony'), 
         ('N', 'Nintendo'), 
         ('F', 'Fabricante3'),
-    ] 
+    ]
     fabricante = models.CharField(max_length=1, choices=FABRICANTES) 
     nombre= models.CharField(max_length=30)
 
@@ -33,7 +33,7 @@ class Videojuego(models.Model):
     ventas_estimadas= models.PositiveIntegerField()
 
     # 1:N CON ESTUDIO
-    estudio = models.OneToOneField(Estudio, on_delete=models.CASCADE, related_name='videojuegoEstudio')
+    estudio = models.ForeignKey(Estudio, on_delete=models.CASCADE, related_name='videojuegoEstudio')
     # N:N CON PLATAFORMA
     plataforma = models.ManyToManyField(Plataforma, related_name='videojuegoPlataformas') 
 
@@ -45,4 +45,4 @@ class Analisis(models.Model):
     nombre_critico= models.CharField(max_length=30)
     
     #1:N con videojuego
-    videojuego = models.OneToOneField(Videojuego, on_delete=models.CASCADE, related_name='analisisVideojuego')
+    videojuego = models.ForeignKey(Videojuego, on_delete=models.CASCADE, related_name='analisisVideojuego')
