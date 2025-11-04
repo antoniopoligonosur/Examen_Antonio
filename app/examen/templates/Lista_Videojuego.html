@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Videojuegos</title>
+</head>
+<body>
+    <h1>Lista Videojuegos</h1>
+    <hr>
+
+    {% for videojuego in Videojuego_Mostrar %}
+    
+    <hr>
+    <h3>Titulo: {{videojuego.titulo}}</h3>
+    <h3>ventas_estimadas: {{videojuego.ventas_estimadas}}</h3>
+    <hr>
+    
+    {% endfor %}
+
+</body>
+</html>

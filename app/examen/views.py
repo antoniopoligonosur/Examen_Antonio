@@ -1,12 +1,25 @@
 from django.shortcuts import render
 from django.views.defaults import page_not_found
+from .models import *
+from django.db.models import Q , Prefetch, Avg, Max, Min
 
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html')
 
+# URL 1
 
+def dame_videojuego_sede(request, tituloVideojuego, paisVideojuego): 
+    
+    videojuego = ( 
+        Videojuego.objects
+        .select_related('estudio', 'sede')
+        .filter(titulo=tituloVideojuego, pais=paisVideojuego)
+        .all()
+    ) 
+
+    return render(request,'Lista_Videojuego.html',{'Videojuego_Mostrar':videojuego}) 
 
 # Errores
 def mi_error_404(request,exception=None):
