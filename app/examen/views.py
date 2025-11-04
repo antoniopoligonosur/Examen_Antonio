@@ -19,7 +19,21 @@ def dame_videojuego_sede(request, tituloVideojuego, paisVideojuego):
         .all()
     ) 
 
-    return render(request,'Lista_Videojuego.html',{'Videojuego_Mostrar':videojuego}) 
+    return render(request,'Lista_Videojuego.html',{'Videojuego_Mostrar':videojuego})
+
+# URL 2
+
+def dame_videojuego_plataforma(request, nombreFabricante, nombrePlataforma, numeroPuntuacion): 
+    
+    videojuego = ( 
+        Videojuego.objects
+        .select_related("plataforma")
+        .prefetch_related('analisisVideojuego')
+        .filter(analisisVideojuego__puntuacion__gt=numeroPuntuacion)
+        .all()
+    )
+
+    return render(request,'Lista_Videojuego.html',{'Videojuego_Mostrar':videojuego})
 
 # Errores
 def mi_error_404(request,exception=None):
