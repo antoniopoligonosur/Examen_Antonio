@@ -43,6 +43,8 @@ python manage.py loaddata examen/fixtures/datos.json
 python manage.py runserver
 ```
 ---
+
+### Paso Final (Debug= False y python manage.py dumpdata --indent 4 > examen/fixtures/datos.json) 
 ## Documentación
 
 Para mantener el README principal más limpio, la documentación detallada se encuentra en los siguientes archivos:
